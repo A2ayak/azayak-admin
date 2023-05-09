@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	[data-theme='default'] {
+		--color-primary: 64, 158, 255;
+	}
+}
