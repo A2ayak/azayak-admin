@@ -1,9 +1,15 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
+import { RouteRecordRaw } from 'vue-router'
+import { staticRouter } from './staticRouter'
 
-const routes = [
-	{ path: '/', component: () => import('../components/HelloWorld.vue') },
-	{ path: '/home', component: () => import('../components/Home.vue') },
-]
+const routes: RouteRecordRaw[] = [...staticRouter]
+
+const modules: Recordable = import.meta.glob('./modules/**/*.ts', { eager: true })
+for (const routePath in modules) {
+	const module: RouteRecordRaw = modules[routePath].default ?? {}
+	routes.push(module)
+}
+console.log('当前路由:', routes)
 
 const WHITE_LIST: string[] = []
 

@@ -13,14 +13,3 @@ function getPopupContainer(triggerNode: HTMLElement, dialogContext: any) {
 	}
 }
 </script>
-
-<style scoped lang="less">
-.logo {
-	height: 6em;
-	padding: 1.5em;
-	will-change: filter;
-}
-span {
-	color: @primary-color;
-}
-</style>

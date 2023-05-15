@@ -1,20 +1,20 @@
 import { RouteRecordRaw } from 'vue-router'
-import { DEFAULT_URL } from '@/config'
+import { DEFAULT_REDIRECT } from '@/config'
 
 // staticRouter(静态路由)
 export const staticRouter: RouteRecordRaw[] = [
 	{
 		path: '/',
-		redirect: DEFAULT_URL,
+		redirect: DEFAULT_REDIRECT,
 	},
-	{
-		path: DEFAULT_URL,
-		name: 'login',
-		component: () => import('@/views/login/index.vue'),
-		meta: {
-			title: '登录',
-		},
-	},
+	// {
+	// 	path: DEFAULT_URL,
+	// 	name: 'login',
+	// 	component: () => import('@/views/login/index.vue'),
+	// 	meta: {
+	// 		title: '登录',
+	// 	},
+	// },
 	{
 		path: '/404',
 		name: '404',
