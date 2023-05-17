@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts" name="layout">
-import classicLayout from './components/classicLayout/index.vue'
+import classicLayout from './classicLayout/index.vue'
 import { LAYOUT_TYPE } from '@/config'
 
 const LayoutComp: { [key: string]: any } = {

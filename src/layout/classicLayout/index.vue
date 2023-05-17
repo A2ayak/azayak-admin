@@ -37,7 +37,9 @@
 				</a-menu>
 			</a-layout-sider>
 			<a-layout>
-				<a-layout-content :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }"> Content </a-layout-content>
+				<a-layout-content :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }">
+					<router-view></router-view>
+				</a-layout-content>
 			</a-layout>
 		</a-layout>
 	</a-layout>

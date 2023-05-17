@@ -31,6 +31,7 @@ module.exports = {
 		'@typescript-eslint/no-explicit-any': 'off', // 允许ts使用any
 		'vue/no-multiple-template-root': 'off',
 		'vue/no-v-model-argument': 'off',
+		'vue/no-v-for-template-key': 'off',
 	},
 	// 全局未声明变量、types放这
 	// globals: {

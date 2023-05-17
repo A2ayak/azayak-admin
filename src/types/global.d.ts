@@ -8,3 +8,9 @@ declare module '*.vue' {
 
 declare type Nullable<T> = T | null
 declare type Recordable<T = any> = Record<string, T>
+
+declare interface response {
+	code: number
+	result: any
+	[key: string]: any
+}

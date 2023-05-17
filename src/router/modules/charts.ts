@@ -3,6 +3,7 @@ import Layout from '@/layout/index.vue'
 
 const chartsRoute: RouteRecordRaw = {
 	path: '/charts',
+	name: 'charts',
 	component: Layout,
 	meta: {
 		hidden: false,
@@ -12,6 +13,7 @@ const chartsRoute: RouteRecordRaw = {
 	children: [
 		{
 			path: 'lineChart',
+			name: 'lineChart',
 			component: () => import('@/views/charts/lineChart.vue'),
 			meta: {
 				hidden: false,
@@ -20,6 +22,7 @@ const chartsRoute: RouteRecordRaw = {
 		},
 		{
 			path: 'pieChart',
+			name: 'pieChart',
 			component: () => import('@/views/charts/pieChart.vue'),
 			meta: {
 				hidden: false,

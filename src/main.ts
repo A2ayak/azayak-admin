@@ -6,6 +6,7 @@ import '@/style/index.css'
 import '@/style/index.less'
 import 'ant-design-vue/dist/antd.less'
 import 'virtual:svg-icons-register' // svg
+import permissionGuards from '@/router/permission'
 
 import { setAntdvCompConfig } from './plugins/antdvCompConfig'
 import { setTheme } from './utils/env'
@@ -15,6 +16,9 @@ setTheme()
 const app = createApp(App)
 app.use(store)
 app.use(router)
+
+// 权限-路由守卫
+permissionGuards(router)
 
 // antdv全局配置
 setAntdvCompConfig(app)

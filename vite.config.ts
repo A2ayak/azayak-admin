@@ -8,6 +8,7 @@ import AutoImport from 'unplugin-auto-import/vite' // 自动导入某些包的Ap
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import { generateThemeVars } from './src/style/theme'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import { viteMockServe } from 'vite-plugin-mock'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -45,6 +46,10 @@ export default defineConfig(({ command, mode }) => {
 						exclude: ['ADatePicker', 'ARangePicker'],
 					}),
 				],
+			}),
+			viteMockServe({
+				mockPath: 'mock',
+				supportTs: true,
 			}),
 		],
 		resolve: {

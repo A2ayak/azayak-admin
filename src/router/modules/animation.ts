@@ -3,6 +3,7 @@ import Layout from '@/layout/index.vue'
 
 const animationRoute: RouteRecordRaw = {
 	path: '/animation',
+	name: 'animation',
 	component: Layout,
 	meta: {
 		hidden: false,
@@ -12,6 +13,7 @@ const animationRoute: RouteRecordRaw = {
 	children: [
 		{
 			path: 'laserStyle',
+			name: 'laserStyle',
 			component: () => import('@/views/animation/laserStyle.vue'),
 			meta: {
 				hidden: false,
