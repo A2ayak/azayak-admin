@@ -8,14 +8,14 @@ export const useUserStore = defineStore({
 	state: (): any => {
 		return {
 			user: null,
-			authRoutes: [],
+			routes: [],
 			token: '',
 			permission: [],
 		}
 	},
 	getters: {
-		getAuthRoutes(): RouteRecordRaw[] {
-			return this.authRoutes
+		getRoutes(): RouteRecordRaw[] {
+			return this.routes
 		},
 		getPermission(): string[] {
 			return this.permission
@@ -25,7 +25,7 @@ export const useUserStore = defineStore({
 		async getUserInfo() {
 			const { result } = await getUserInfo()
 			localCache.setCache('token', result.token)
-			console.log(result)
+			this.routes = result.routes
 		},
 	},
 })

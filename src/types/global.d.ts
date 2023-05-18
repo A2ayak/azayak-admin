@@ -14,3 +14,14 @@ declare interface response {
 	result: any
 	[key: string]: any
 }
+
+interface ImportMetaEnv {
+	readonly VITE_APP_NAME: string
+	readonly VITE_API_PREFIX: string
+	readonly VITE_MOCK_API_PREFIX: string
+	// 更多环境变量...
+}
+
+interface ImportMeta {
+	readonly env: ImportMetaEnv
+}

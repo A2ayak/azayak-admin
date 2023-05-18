@@ -12,7 +12,7 @@ const chartsRoute: RouteRecordRaw = {
 	},
 	children: [
 		{
-			path: 'lineChart',
+			path: '/charts/lineChart',
 			name: 'lineChart',
 			component: () => import('@/views/charts/lineChart.vue'),
 			meta: {

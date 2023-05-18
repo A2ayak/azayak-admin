@@ -1,14 +1,18 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import { RouteRecordRaw } from 'vue-router'
 import { staticRouter } from './staticRouter'
+import { IS_FE_ROUTE } from '@/config'
 
 const routes: RouteRecordRaw[] = [...staticRouter]
 
-const modules: Recordable = import.meta.glob('./modules/**/*.ts', { eager: true })
-for (const routePath in modules) {
-	const module: RouteRecordRaw = modules[routePath].default ?? {}
-	routes.push(module)
+if (IS_FE_ROUTE) {
+	const modules: Recordable = import.meta.glob('./modules/**/*.ts', { eager: true })
+	for (const routePath in modules) {
+		const module: RouteRecordRaw = modules[routePath].default ?? {}
+		routes.push(module)
+	}
 }
+
 console.log('当前路由:', routes)
 
 const WHITE_LIST: string[] = []
