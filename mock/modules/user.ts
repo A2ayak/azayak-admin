@@ -2,14 +2,23 @@ import { MockMethod } from 'vite-plugin-mock'
 import { resultSuccess, resultError } from 'mock/utils'
 
 const userInfo = {
-	name: 'admin',
-	userId: '4090',
+	user: 'admin',
 	email: 'azayakey@gmail.com',
-	token: 'testToken',
 	routes: ['charts', 'lineChart', 'pieChart', 'animation'],
 }
 
 export default [
+	{
+		url: '/mock/api/login',
+		timeout: 1000,
+		method: 'post',
+		response: () => {
+			return resultSuccess({
+				token: 'testToken',
+				userId: '4090',
+			})
+		},
+	},
 	{
 		url: '/mock/api/userInfo',
 		timeout: 1000,

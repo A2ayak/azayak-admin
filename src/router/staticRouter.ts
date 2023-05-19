@@ -16,17 +16,9 @@ export const staticRouter: RouteRecordRaw[] = [
 	// 	},
 	// },
 	{
-		path: '/200',
-		name: '200',
-		component: () => import('@/layout/index.vue'),
-		redirect: { name: '222' },
-		children: [
-			{
-				path: '222',
-				name: '222',
-				component: () => import('@/components/200.vue'),
-			},
-		],
+		path: '/login',
+		name: 'login',
+		component: () => import('@/components/login/index.vue'),
 	},
 	{
 		path: '/404',

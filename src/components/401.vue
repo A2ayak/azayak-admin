@@ -1,5 +1,5 @@
 <template>
-	<div>200 success</div>
+	<div>无权限</div>
 </template>
 
 <script lang="ts">

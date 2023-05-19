@@ -22,7 +22,7 @@ function filterRoute(routes: RouteRecordRaw[], permission: string[]): RouteRecor
 		if (!permission.includes(r.name as string)) continue
 		r.children = filterRoute(r.children || [], permission)
 		if (r.children.length) {
-			r.redirect = '/charts/lineChart'
+			r.redirect = { name: r.children[0].name }
 		}
 		res.push(r)
 	}
