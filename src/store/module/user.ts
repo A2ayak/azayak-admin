@@ -11,17 +11,14 @@ export const useUserStore = defineStore({
 		return {
 			user: null,
 			userId: '',
+			routeNames: [],
 			routes: [],
 			token: '',
-			permission: [],
 		}
 	},
 	getters: {
 		getRoutes(): RouteRecordRaw[] {
 			return this.routes
-		},
-		getPermission(): string[] {
-			return this.permission
 		},
 		getUser(): string {
 			return this.user
@@ -32,7 +29,7 @@ export const useUserStore = defineStore({
 			const { result } = await getUserInfo()
 			localCache.setCache('token', result.token)
 			this.user = result.user
-			this.routes = result.routes
+			this.routeNames = result.routeNames
 		},
 		async loginAction(account: IAccount) {
 			//1.账号登录，获取token等信息
@@ -72,6 +69,9 @@ export const useUserStore = defineStore({
 
 			// //3. 页面跳转（main页面）
 			// await router.push('/main')
+		},
+		setRoutes(routes: RouteRecordRaw[]) {
+			this.routes = routes
 		},
 	},
 })

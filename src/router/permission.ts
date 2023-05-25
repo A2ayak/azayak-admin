@@ -9,7 +9,6 @@ export default function permissionGuards(router: Router) {
 	router.beforeEach(async (to, from, next) => {
 		console.log('to', to)
 		const token = localCache.getCache('token')
-		console.log('token', token)
 		if (token) {
 			const userStore = useUserStore()
 			const user = userStore.getUser
@@ -18,12 +17,12 @@ export default function permissionGuards(router: Router) {
 			} else {
 				try {
 					await userStore.getUserInfo()
-					const permissionRoutes = generatePermissionRoutes(userStore.getRoutes)
+					const permissionRoutes = generatePermissionRoutes(userStore.routeNames)
 					console.log(permissionRoutes)
+					userStore.setRoutes(permissionRoutes)
 					permissionRoutes.forEach((route) => {
 						router.addRoute(route)
 					})
-					console.log(router)
 					next({ name: 'lineChart', replace: true })
 				} catch (error) {
 					console.warn(error)

@@ -17,11 +17,14 @@
 		"axios": "^1.4.0",
 		"dayjs": "^1.11.6",
 		"pinia": "^2.0.23",
+		"three": "0.127.0",
+		"troisjs": "0.3.0-beta.4",
 		"vue": "^3.2.37",
 		"vue-router": "^4.0.13"
 	},
 	"devDependencies": {
 		"@types/node": "^18.11.4",
+		"@types/three": "0.127.0",
 		"@typescript-eslint/eslint-plugin": "^5.41.0",
 		"@typescript-eslint/parser": "^5.41.0",
 		"@vitejs/plugin-vue": "^4.2.1",

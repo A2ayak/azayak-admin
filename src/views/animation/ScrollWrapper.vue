@@ -1,8 +1,10 @@
 <template>
-	<div>无权限</div>
+	<div ref="wrapper"></div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { reactive, ref, onMounted } from 'vue'
+
+onMounted(() => {})
 </script>
 <style scoped lang="less"></style>

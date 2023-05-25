@@ -5,7 +5,7 @@ import { DEFAULT_REDIRECT } from '@/config'
 export const staticRouter: RouteRecordRaw[] = [
 	{
 		path: '/',
-		redirect: '/200',
+		redirect: '/login',
 	},
 	// {
 	// 	path: DEFAULT_URL,
@@ -19,18 +19,24 @@ export const staticRouter: RouteRecordRaw[] = [
 		path: '/login',
 		name: 'login',
 		component: () => import('@/components/login/index.vue'),
+		meta: {
+			title: 'login',
+		},
 	},
 	{
 		path: '/404',
-		name: '404',
-		component: () => import('@/components/404.vue'),
+		name: 'NotFoundPage',
+		component: () => import('@/components/NotFoundPage.vue'),
 		meta: {
-			title: '404页面',
+			title: '404 not found',
 		},
 	},
 	{
 		path: '/:pathMatch(.*)',
 		name: 'notFound',
-		component: () => import('@/components/404.vue'),
+		component: () => import('@/components/NotFoundPage.vue'),
+		meta: {
+			title: 'not found',
+		},
 	},
 ]

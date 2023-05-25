@@ -1,5 +1,5 @@
 <template>
-	<div></div>
+	<div>pieChart</div>
 </template>
 
 <script lang="ts" setup>

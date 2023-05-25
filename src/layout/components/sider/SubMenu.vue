@@ -1,29 +1,24 @@
 <template>
 	<template v-for="subItem in menuList" :key="subItem.path">
-		<a-sub-menu v-if="subItem.children && subItem.children.length > 0" :index="subItem.path">
+		<a-sub-menu v-if="subItem.children && subItem.children.length > 0" :key="subItem.path">
 			<template #title>
-				<el-icon>
-					<component :is="subItem.meta.icon"></component>
-				</el-icon>
-				<span>{{ subItem.meta.title }}</span>
+				<svg-icon name="account"></svg-icon>
+				<span>{{ subItem.meta!.title }}</span>
 			</template>
 			<SubMenu :menu-list="subItem.children" />
 		</a-sub-menu>
-		<a-menu-item v-else :index="subItem.path" @click="handleClickMenu(subItem)">
-			<el-icon>
-				<component :is="subItem.meta.icon"></component>
-			</el-icon>
-			<template #title>
-				<span>{{ subItem.meta.title }}</span>
-			</template>
+		<a-menu-item v-else :key="subItem.path" @click="handleClickMenu(subItem)">
+			<svg-icon :name="subItem.meta!.icon"></svg-icon>
+			<span>{{ subItem.meta!.title }}</span>
 		</a-menu-item>
 	</template>
 </template>
 
 <script lang="ts" setup name="SubMenu">
 import { useRouter } from 'vue-router'
+import { RouteRecordRaw } from 'vue-router'
 
-defineProps<{ menuList: any[] }>()
+defineProps<{ menuList: RouteRecordRaw[] }>()
 
 const router = useRouter()
 const handleClickMenu = (subItem: any) => {

@@ -3,10 +3,10 @@
 </template>
 
 <script setup lang="ts" name="layout">
-import classicLayout from './classicLayout/index.vue'
+import classicLayout from './layoutClassic/index.vue'
 import { LAYOUT_TYPE } from '@/config'
 
-const LayoutComp: { [key: string]: any } = {
+const LayoutComp: Recordable = {
 	classic: classicLayout,
 }
 </script>

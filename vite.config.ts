@@ -40,6 +40,7 @@ export default defineConfig(({ command, mode }) => {
 				imports: ['vue'],
 			}),
 			Components({
+				dirs: ['src/components/globalComp'],
 				resolvers: [
 					AntDesignVueResolver({
 						importStyle: false,
@@ -47,6 +48,7 @@ export default defineConfig(({ command, mode }) => {
 					}),
 				],
 			}),
+			// https://github.com/vbenjs/vite-plugin-mock/blob/v2.9.1/README.zh_CN.md
 			viteMockServe({
 				mockPath: 'mock',
 				supportTs: true,

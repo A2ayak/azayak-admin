@@ -8,7 +8,7 @@ const chartsRoute: RouteRecordRaw = {
 	meta: {
 		hidden: false,
 		title: '可视化图表',
-		icon: 'chart',
+		icon: 'vue',
 	},
 	children: [
 		{
@@ -18,15 +18,17 @@ const chartsRoute: RouteRecordRaw = {
 			meta: {
 				hidden: false,
 				title: '折线图',
+				icon: 'vue',
 			},
 		},
 		{
-			path: 'pieChart',
+			path: '/charts/pieChart',
 			name: 'pieChart',
 			component: () => import('@/views/charts/pieChart.vue'),
 			meta: {
 				hidden: false,
 				title: '饼图',
+				icon: 'vue',
 			},
 		},
 	],

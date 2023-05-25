@@ -7,9 +7,9 @@
 <script setup lang="ts" name="SvgIcon">
 import { computed, CSSProperties } from 'vue'
 interface SvgProps {
+	name: string
 	type?: string
 	prefix?: string
-	name: string
 	size?: number | string
 	className?: string
 }

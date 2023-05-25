@@ -13,6 +13,12 @@ dependencies:
   pinia:
     specifier: ^2.0.23
     version: 2.0.23(typescript@4.6.4)(vue@3.2.37)
+  three:
+    specifier: 0.127.0
+    version: 0.127.0
+  troisjs:
+    specifier: 0.3.0-beta.4
+    version: 0.3.0-beta.4
   vue:
     specifier: ^3.2.37
     version: 3.2.37
@@ -24,6 +30,9 @@ devDependencies:
   '@types/node':
     specifier: ^18.11.4
     version: 18.11.4
+  '@types/three':
+    specifier: 0.127.0
+    version: 0.127.0
   '@typescript-eslint/eslint-plugin':
     specifier: ^5.41.0
     version: 5.41.0(@typescript-eslint/parser@5.41.0)(eslint@8.26.0)(typescript@4.6.4)
@@ -829,6 +838,10 @@ packages:
     resolution: {integrity: sha512-l4cmyPEckf8moNYHdJ+4wkHvFxjyW6ulm9l4YGaOxeyBWPhBOT0gvni1InpFPdzx1dKf/2s62qGITwxNWnPQng==}
     dependencies:
       '@types/node': 18.11.4
+    dev: true
+
+  /@types/three@0.127.0:
+    resolution: {integrity: sha512-4Q33L6PzzxCXm0VdUv4x1/4VBnwWgCS7Ui6WpRh88GVIUUYsg5qU2GVzva14hDJbtfyNBxey7UcdInR4RkKPeQ==}
     dev: true
 
   /@typescript-eslint/eslint-plugin@5.41.0(@typescript-eslint/parser@5.41.0)(eslint@8.26.0)(typescript@4.6.4):
@@ -4348,6 +4361,10 @@ packages:
       any-promise: 1.3.0
     dev: true
 
+  /three@0.127.0:
+    resolution: {integrity: sha512-wtgrn+mhYUbobxT7QN3GPdu3SRpSBQvwY6uOzLChWS7QE//f7paDU/+wlzbg+ngeIvBBqjBHSRuywTh8A99Jng==}
+    dev: false
+
   /to-fast-properties@2.0.0:
     resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}
     engines: {node: '>=4'}
@@ -4387,6 +4404,10 @@ packages:
   /traverse@0.6.7:
     resolution: {integrity: sha512-/y956gpUo9ZNCb99YjxG7OaslxZWHfCHAUUfshwqOXmxUIvqLjVO581BT+gM59+QV9tFe6/CGG53tsA1Y7RSdg==}
     dev: true
+
+  /troisjs@0.3.0-beta.4:
+    resolution: {integrity: sha512-0NvaqXN7G1TctI1RdAu+QKHTGZLTniBFlc0W7dSe20VxSXKhSp3Y8uHNDC7KPITjOesKIs6/Cp5w8EmT4xttKQ==}
+    dev: false
 
   /ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}

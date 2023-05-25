@@ -8,16 +8,17 @@ const animationRoute: RouteRecordRaw = {
 	meta: {
 		hidden: false,
 		title: '动画',
-		icon: 'animation',
+		icon: 'vue',
 	},
 	children: [
 		{
-			path: 'laserStyle',
+			path: '/animation/laserStyle',
 			name: 'laserStyle',
-			component: () => import('@/views/animation/laserStyle.vue'),
+			component: () => import('@/views/animation/LaserStyle.vue'),
 			meta: {
 				hidden: false,
 				title: '上升射线',
+				icon: 'vue',
 			},
 		},
 	],
