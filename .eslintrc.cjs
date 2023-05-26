@@ -29,6 +29,7 @@ module.exports = {
 		'@typescript-eslint/no-unused-vars': 'off',
 		'vue/multi-word-component-names': 'off',
 		'@typescript-eslint/no-explicit-any': 'off', // 允许ts使用any
+		'@typescript-eslint/ban-ts-comment': 'off',
 		'vue/no-multiple-template-root': 'off',
 		'vue/no-v-model-argument': 'off',
 		'vue/no-v-for-template-key': 'off',

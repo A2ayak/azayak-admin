@@ -13,9 +13,11 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@vueuse/core": "^10.1.2",
 		"ant-design-vue": "3.2.20",
 		"axios": "^1.4.0",
 		"dayjs": "^1.11.6",
+		"lodash-es": "^4.17.21",
 		"pinia": "^2.0.23",
 		"three": "0.127.0",
 		"troisjs": "0.3.0-beta.4",
@@ -23,6 +25,7 @@
 		"vue-router": "^4.0.13"
 	},
 	"devDependencies": {
+		"@types/lodash-es": "^4.17.7",
 		"@types/node": "^18.11.4",
 		"@types/three": "0.127.0",
 		"@typescript-eslint/eslint-plugin": "^5.41.0",
