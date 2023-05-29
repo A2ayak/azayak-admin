@@ -23,7 +23,7 @@ export default function permissionGuards(router: Router) {
 					permissionRoutes.forEach((route) => {
 						router.addRoute(route)
 					})
-					next({ name: 'lineChart', replace: true })
+					next({ name: 'scrollBar', replace: true })
 				} catch (error) {
 					console.warn(error)
 					next('/login')

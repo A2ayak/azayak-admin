@@ -1,5 +1,5 @@
 <template>
-	<div ref="scrollbarRef" class="scrollbar">
+	<div ref="scrollbarRef" class="el-scrollbar">
 		<div ref="wrapRef" :class="wrapKls" :style="style" @scroll="handleScroll">
 			<component :is="tag" ref="resizeRef" :class="resizeKls" :style="viewStyle">
 				<slot />
@@ -172,6 +172,67 @@ defineExpose({
 })
 </script>
 
-<style lang="less" scoped>
-.
+<style lang="less">
+.el-scrollbar {
+	overflow: hidden;
+	position: relative;
+	height: 100%;
+	&__wrap {
+		overflow: auto;
+		height: 100%;
+		&--hidden-default {
+			scrollbar-width: none;
+			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
+	}
+
+	&__thumb {
+		position: relative;
+		display: block;
+		width: 0;
+		height: 0;
+		cursor: pointer;
+		border-radius: inherit;
+		background-color: #909399;
+		opacity: 0.3;
+		transition: background-color 0.5s ease-out;
+		&:hover {
+			background-color: #909399;
+			opacity: 0.5;
+		}
+	}
+
+	&__bar {
+		position: absolute;
+		right: 2px;
+		bottom: 2px;
+		z-index: 1;
+		border-radius: 4px;
+
+		&.is-vertical {
+			width: 6px;
+			top: 2px;
+			> div {
+				width: 100%;
+			}
+		}
+
+		&.is-horizontal {
+			height: 6px;
+			left: 2px;
+			> div {
+				height: 100%;
+			}
+		}
+	}
+
+	// &:active > .el-scrollbar__bar,
+	// &:focus > .el-scrollbar__bar,
+	// &:hover > .el-scrollbar__bar {
+	// 	opacity: 1;
+	// 	transition: opacity 340ms ease-out;
+	// }
+}
 </style>

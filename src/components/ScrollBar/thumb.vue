@@ -1,5 +1,5 @@
 <template>
-	<transition :name="ns.b('fade')">
+	<transition name="el-fade">
 		<div v-show="always || visible" ref="instance" :class="[ns.e('bar'), ns.is(bar.key)]" @mousedown="clickTrackHandler">
 			<div ref="thumb" :class="ns.e('thumb')" :style="thumbStyle" @mousedown="clickThumbHandler" />
 		</div>
@@ -47,7 +47,7 @@ const offsetRatio = computed(
 		// offsetRatioX = original width of thumb / current width of thumb / ratioX
 		// offsetRatioY = original height of thumb / current height of thumb / ratioY
 		// instance height = wrap height - GAP
-		instance.value![bar.value.offset] ** 2 / scrollbar.wrapElement![bar.value.scrollSize] / props.ratio / thumb.value![bar.value.offset]
+		instance.value![bar.value.offset] ** 2 / scrollbar!.wrapElement![bar.value.scrollSize] / props.ratio / thumb.value![bar.value.offset]
 )
 
 const clickThumbHandler = (e: MouseEvent) => {
@@ -64,13 +64,13 @@ const clickThumbHandler = (e: MouseEvent) => {
 }
 
 const clickTrackHandler = (e: MouseEvent) => {
-	if (!thumb.value || !instance.value || !scrollbar.wrapElement) return
+	if (!thumb.value || !instance.value || !scrollbar!.wrapElement) return
 
 	const offset = Math.abs((e.target as HTMLElement).getBoundingClientRect()[bar.value.direction] - e[bar.value.client])
 	const thumbHalf = thumb.value[bar.value.offset] / 2
 	const thumbPositionPercentage = ((offset - thumbHalf) * 100 * offsetRatio.value) / instance.value[bar.value.offset]
 
-	scrollbar.wrapElement[bar.value.scroll] = (thumbPositionPercentage * scrollbar.wrapElement[bar.value.scrollSize]) / 100
+	scrollbar!.wrapElement[bar.value.scroll] = (thumbPositionPercentage * scrollbar!.wrapElement[bar.value.scrollSize]) / 100
 }
 
 const startDrag = (e: MouseEvent) => {
@@ -92,7 +92,7 @@ const mouseMoveDocumentHandler = (e: MouseEvent) => {
 	const offset = (instance.value.getBoundingClientRect()[bar.value.direction] - e[bar.value.client]) * -1
 	const thumbClickPosition = thumb.value[bar.value.offset] - prevPage
 	const thumbPositionPercentage = ((offset - thumbClickPosition) * 100 * offsetRatio.value) / instance.value[bar.value.offset]
-	scrollbar.wrapElement[bar.value.scroll] = (thumbPositionPercentage * scrollbar.wrapElement[bar.value.scrollSize]) / 100
+	scrollbar!.wrapElement[bar.value.scroll] = (thumbPositionPercentage * scrollbar!.wrapElement[bar.value.scrollSize]) / 100
 }
 
 const mouseUpDocumentHandler = () => {
@@ -123,6 +123,18 @@ const restoreOnselectstart = () => {
 	if (document.onselectstart !== originalOnSelectStart) document.onselectstart = originalOnSelectStart
 }
 
-useEventListener(toRef(scrollbar, 'scrollbarElement'), 'mousemove', mouseMoveScrollbarHandler)
-useEventListener(toRef(scrollbar, 'scrollbarElement'), 'mouseleave', mouseLeaveScrollbarHandler)
+useEventListener(toRef(scrollbar!, 'scrollbarElement'), 'mousemove', mouseMoveScrollbarHandler)
+useEventListener(toRef(scrollbar!, 'scrollbarElement'), 'mouseleave', mouseLeaveScrollbarHandler)
 </script>
+
+<style lang="less">
+.el-fade-enter-active,
+.el-fade-leave-active {
+	transition: opacity 0.3s ease;
+}
+
+.el-fade-enter-from,
+.el-fade-leave-to {
+	opacity: 0;
+}
+</style>
