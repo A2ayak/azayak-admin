@@ -12,9 +12,19 @@ const chartsRoute: RouteRecordRaw = {
 	},
 	children: [
 		{
+			path: '/charts/barChart',
+			name: 'barChart',
+			component: () => import('@/views/charts/BarChart.vue'),
+			meta: {
+				hidden: false,
+				title: '柱状图',
+				icon: 'vue',
+			},
+		},
+		{
 			path: '/charts/lineChart',
 			name: 'lineChart',
-			component: () => import('@/views/charts/lineChart.vue'),
+			component: () => import('@/views/charts/LineChart.vue'),
 			meta: {
 				hidden: false,
 				title: '折线图',
@@ -24,7 +34,7 @@ const chartsRoute: RouteRecordRaw = {
 		{
 			path: '/charts/pieChart',
 			name: 'pieChart',
-			component: () => import('@/views/charts/pieChart.vue'),
+			component: () => import('@/views/charts/PieChart.vue'),
 			meta: {
 				hidden: false,
 				title: '饼图',

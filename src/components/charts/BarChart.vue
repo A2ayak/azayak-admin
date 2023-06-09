@@ -7,10 +7,12 @@ import { ref, onMounted, watch } from 'vue'
 import { mergeOptions } from './utils'
 import { switchColorTheme } from './utils/presetColorTheme'
 import * as echarts from 'echarts'
-import { Item } from 'ant-design-vue/lib/menu'
+import { BarSeriesOption } from 'echarts'
+import { useChartResize } from '@/hooks/useChartResize'
+import { debounce } from 'lodash-es'
 
 const barChartDom = ref()
-let chartInstance = null
+let chartInstance: any = null
 
 interface BarProps {
 	// 图表数据，默认传入格式为 seriesData: [[series1数据], [series2数据], ...]，数据顺序与legendName数组顺序一致
@@ -83,20 +85,20 @@ function initChart() {
 		return str
 	}
 
+	console.log(props.xAxisData)
+
 	const seriesData = props.seriesData.map((data, index) => {
 		return {
 			name: props.seriesName[index],
-			data,
+			data: data,
 			type: 'bar',
 			barMaxWidth: 24, // 柱状条最大宽度
 			itemStyle: {
-				normal: {
-					color: seriesColors[index], // 柱状条颜色
-					label: {
-						textStyle: {
-							fontSize: 15,
-							color: xAxisLabelColor,
-						},
+				color: seriesColors[index], // 柱状条颜色
+				label: {
+					textStyle: {
+						fontSize: 15,
+						color: xAxisLabelColor,
 					},
 				},
 			},
@@ -117,8 +119,9 @@ function initChart() {
 				color: '#142D4B', //背景柱状条
 			},
 		}
-	})
-	let initOptions = {
+	}) as BarSeriesOption[]
+
+	let initOptions: echarts.EChartsOption = {
 		// 全局颜色，与图例颜色相关
 		color: seriesColors,
 		grid: {
@@ -130,7 +133,7 @@ function initChart() {
 		},
 		xAxis: {
 			data: props.xAxisData,
-			type: 'categoty',
+			type: 'category',
 			splitLine: {
 				show: false,
 				lineStyle: {
@@ -141,10 +144,8 @@ function initChart() {
 			},
 			axisLabel: {
 				show: true,
-				textStyle: {
-					color: xAxisLabelColor,
-					fontSize: 12,
-				},
+				color: xAxisLabelColor,
+				fontSize: 12,
 			},
 			axisLine: {
 				show: true,
@@ -169,10 +170,8 @@ function initChart() {
 			},
 			axisLabel: {
 				show: true,
-				textStyle: {
-					color: yAxisLabelColor,
-					fontSize: 12,
-				},
+				color: yAxisLabelColor,
+				fontSize: 12,
 			},
 			axisLine: {
 				show: false,
@@ -193,7 +192,7 @@ function initChart() {
 					backgroundColor: '#6C7285',
 					fontWeight: 600,
 					color: '#6C7285',
-					border: 'none',
+					borderWidth: 0,
 				},
 				lineStyle: {
 					type: 'solid',
@@ -267,6 +266,7 @@ function initChart() {
 	chartInstance.on('click', (params: any) => {
 		emits('click', params)
 	})
+	useChartResize(barChartDom, chartInstance)
 }
 
 const emits = defineEmits<{
@@ -286,7 +286,11 @@ function resizeChart() {
 }
 
 onMounted(() => {
-	initChart(),
+	initChart()
+	// window.addEventListener(
+	// 	'resize',
+	// 	debounce(() => chartInstance.resize(), 200)
+	// )
 })
 </script>
 <style scoped lang="less"></style>

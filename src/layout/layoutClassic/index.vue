@@ -57,5 +57,6 @@ onMounted(() => {
 </script>
 <style scoped lang="less">
 .azayak-layout-classic {
+	@apply h-full w-full;
 }
 </style>

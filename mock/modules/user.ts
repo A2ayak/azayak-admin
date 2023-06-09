@@ -4,7 +4,7 @@ import { resultSuccess, resultError } from 'mock/utils'
 const userInfo = {
 	user: 'admin',
 	email: 'azayakey@gmail.com',
-	routeNames: ['charts', 'lineChart', 'pieChart', 'animation', 'laserStyle', 'uiComp', 'scrollBar'],
+	routeNames: ['charts', 'barChart', 'lineChart', 'pieChart', 'animation', 'laserStyle', 'uiComp', 'scrollBar'],
 }
 
 export default [
