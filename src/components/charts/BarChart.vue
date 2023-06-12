@@ -9,10 +9,9 @@ import { switchColorTheme } from './utils/presetColorTheme'
 import * as echarts from 'echarts'
 import { BarSeriesOption } from 'echarts'
 import { useChartResize } from '@/hooks/useChartResize'
-import { debounce } from 'lodash-es'
 
 const barChartDom = ref()
-let chartInstance: any = null
+let chartInstance: Nullable<echarts.ECharts> = null
 
 interface BarProps {
 	// 图表数据，默认传入格式为 seriesData: [[series1数据], [series2数据], ...]，数据顺序与legendName数组顺序一致
@@ -67,6 +66,9 @@ function initChart() {
 	} = Object.assign(switchColorTheme(props.theme), props.extraColors)
 
 	function tooltipFormatterFn(item: any) {
+		const seriesIndex = item.seriesIndex
+		const dataIndex = item.dataIndex
+
 		let str = ''
 		if (props.isLeftRightCompare) {
 			str += `<div style="font-size: 16px; font-weight: 600; color: ${tooltipTitleColor}; margin-bottom: 8px">${item.name}</div>`
@@ -80,12 +82,10 @@ function initChart() {
 			})
 		} else {
 			str += `<span style="color: ${tooltipTextColor}">${item.name}</span>`
-			str += `<span style="color: ${tooltipTextColor}; margin-left: 8px">${item.value}</span>`
+			str += `<span style="color: ${tooltipTextColor}; margin-left: 8px">${props.seriesData[seriesIndex][dataIndex]}</span>`
 		}
 		return str
 	}
-
-	console.log(props.xAxisData)
 
 	const seriesData = props.seriesData.map((data, index) => {
 		return {
@@ -157,8 +157,10 @@ function initChart() {
 			axisTick: { show: false },
 		},
 		yAxis: {
-			show: false,
-			data: props.xAxisData,
+			show: true,
+			// data: {
+			// 	value: props.xAxisData,
+			// },
 			type: 'value',
 			splitLine: {
 				show: false,
@@ -219,42 +221,43 @@ function initChart() {
 		},
 	}
 	// 类型type为log时则手动模拟对数轴
-	// if (props.type === 'log') {
-	// 	const logBase = 10
-	// 	const max = Math.max(...props.seriesData.flat())
-	// 	const min = Math.min(...props.seriesData.flat().filter((e) => e > 0))
-	// 	let dMax = 0
-	// 	let dMin = 0
-	// 	while (Math.pow(logBase, dMax) <= max) {
-	// 		dMax++
-	// 	}
-	// 	while (Math.pow(logBase, dMin) >= min && dMin > -10) {
-	// 		dMin--
-	// 	}
-	// 	const interval = logBase / Math.abs(dMax)
-	// 	const logSeriesData = props.seriesData.map((sData) => {
-	// 		return {
-	// 			data: sData.map((e: any) => {
-	// 				return e !== 0 ? Math.log(e / Math.log(logBase)) * interval + interval * Math.abs(dMin) : 0
-	// 			}),
-	// 		}
-	// 	})
-	// 	const logTypeOptions = {
-	// 		series: logSeriesData,
-	// 		yAxis: {
-	// 			type: 'value',
-	// 			max: logBase + interval * Math.abs(dMin),
-	// 			interval: interval,
-	// 			min: 0,
-	// 			axisLabel: {
-	// 				formatter: (e) => {
-	// 					return e === 0 ? 0 : Math.pow(logBase, (e - interval * Math.abs(dMin)) / interval).toFixed(0)
-	// 				},
-	// 			},
-	// 		},
-	// 	}
-	// 	initOptions = mergeOptions(initOptions, logTypeOptions)
-	// }
+	if (props.type === 'log') {
+		const logBase = 10
+		const max = Math.max(...props.seriesData.flat())
+		const min = Math.min(...props.seriesData.flat().filter((e) => e > 0))
+
+		let dMax = 0
+		let dMin = 0
+		while (Math.pow(logBase, dMax) <= max) {
+			dMax++
+		}
+		while (Math.pow(logBase, dMin) >= min && dMin > -10) {
+			dMin--
+		}
+		const interval = logBase / Math.abs(dMax)
+		const logSeriesData = props.seriesData.map((sData) => {
+			return {
+				data: sData.map((e: any) => {
+					return e !== 0 ? Math.log(e / Math.log(logBase)) * interval + interval * Math.abs(dMin) : 0
+				}),
+			}
+		})
+		const logTypeOptions = {
+			series: logSeriesData,
+			yAxis: {
+				type: 'value',
+				max: logBase + interval * Math.abs(dMin),
+				interval: interval,
+				min: 0,
+				axisLabel: {
+					formatter: (e: any) => {
+						return e === 0 ? 0 : Math.pow(logBase, (e - interval * Math.abs(dMin)) / interval).toFixed(0)
+					},
+				},
+			},
+		}
+		initOptions = mergeOptions(initOptions, logTypeOptions)
+	}
 	if (Object.keys(props.extraOptions).length) {
 		initOptions = mergeOptions(initOptions, props.extraOptions)
 	}
@@ -266,7 +269,6 @@ function initChart() {
 	chartInstance.on('click', (params: any) => {
 		emits('click', params)
 	})
-	useChartResize(barChartDom, chartInstance)
 }
 
 const emits = defineEmits<{
@@ -281,16 +283,9 @@ watch(
 	{ deep: true }
 )
 
-function resizeChart() {
-	chartInstance?.resize()
-}
-
 onMounted(() => {
 	initChart()
-	// window.addEventListener(
-	// 	'resize',
-	// 	debounce(() => chartInstance.resize(), 200)
-	// )
+	useChartResize(barChartDom.value, chartInstance)
 })
 </script>
 <style scoped lang="less"></style>

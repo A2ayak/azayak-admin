@@ -1,7 +1,7 @@
 import { debounce } from 'lodash-es'
 import elementResizeDetectorMaker from 'element-resize-detector'
 
-export function useChartResize(chartDom, chartInstance) {
+export function useChartResize(chartDom: HTMLElement, chartInstance) {
 	console.log(chartInstance, 'zxc')
 
 	const resizeChart = debounce(
@@ -15,5 +15,5 @@ export function useChartResize(chartDom, chartInstance) {
 		500
 	)
 	const erd = elementResizeDetectorMaker()
-	erd.listenTo(chartDom.value, resizeChart)
+	erd.listenTo(chartDom, resizeChart)
 }
