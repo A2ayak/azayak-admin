@@ -6,12 +6,12 @@
 import { ref, onMounted, watch } from 'vue'
 import { mergeOptions } from './utils'
 import { switchColorTheme } from './utils/presetColorTheme'
-import * as echarts from 'echarts'
-import { BarSeriesOption } from 'echarts'
+import { init } from 'echarts'
+import { BarSeriesOption, EChartsType, EChartsOption } from 'echarts'
 import { useChartResize } from '@/hooks/useChartResize'
 
 const barChartDom = ref()
-let chartInstance: Nullable<echarts.ECharts> = null
+let chartInstance: Nullable<EChartsType> = null
 
 interface BarProps {
 	// 图表数据，默认传入格式为 seriesData: [[series1数据], [series2数据], ...]，数据顺序与legendName数组顺序一致
@@ -50,7 +50,7 @@ const props = withDefaults(defineProps<BarProps>(), {
 })
 
 function initChart() {
-	chartInstance = echarts.init(barChartDom.value as HTMLElement)
+	chartInstance = init(barChartDom.value as HTMLElement)
 	const {
 		seriesColors,
 		tooltipTitleColor,
@@ -121,7 +121,7 @@ function initChart() {
 		}
 	}) as BarSeriesOption[]
 
-	let initOptions: echarts.EChartsOption = {
+	let initOptions: EChartsOption = {
 		// 全局颜色，与图例颜色相关
 		color: seriesColors,
 		grid: {
@@ -285,7 +285,7 @@ watch(
 
 onMounted(() => {
 	initChart()
-	useChartResize(barChartDom.value, chartInstance)
+	useChartResize(barChartDom.value, chartInstance!)
 })
 </script>
 <style scoped lang="less"></style>

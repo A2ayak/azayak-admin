@@ -19,13 +19,12 @@
 import { ref, onMounted, watch, computed } from 'vue'
 import { mergeOptions } from './utils'
 import { switchColorTheme } from './utils/presetColorTheme'
-import * as echarts from 'echarts'
-import { BarSeriesOption } from 'echarts'
+import { init } from 'echarts'
+import { PieSeriesOption, EChartsType, EChartsOption } from 'echarts'
 import { useChartResize } from '@/hooks/useChartResize'
-import { Item } from 'ant-design-vue/lib/menu'
 
 const pieChartDom = ref()
-let chartInstance: Nullable<echarts.ECharts> = null
+let chartInstance: Nullable<EChartsType> = null
 
 const total = computed(() => {
 	return props.seriesData.reduce((pre: number, cur: any) => pre + Number(cur.value), 0)
@@ -58,7 +57,7 @@ const props = withDefaults(defineProps<pieProps>(), {
 })
 
 function initChart() {
-	chartInstance = echarts.init(pieChartDom.value as HTMLElement)
+	chartInstance = init(pieChartDom.value as HTMLElement)
 	const { seriesColors, tooltipTextColor, tooltipBGColor, legendTextColor } = Object.assign(switchColorTheme(props.theme), props.extraColors)
 
 	function tooltipFormatterFn(item: any) {
@@ -97,7 +96,7 @@ function initChart() {
 		})
 	})
 
-	let initOptions: echarts.EChartsOption = {
+	let initOptions: EChartsOption = {
 		// 全局颜色，与图例颜色相关
 		color: seriesColors,
 		grid: {
@@ -113,7 +112,7 @@ function initChart() {
 			center: [props.leftPosPercent, props.topPosPercent], // 饼图位置
 			data: seriesData,
 			// avoidLabelOverlap: false,
-		},
+		} as PieSeriesOption,
 		tooltip: {
 			trigger: 'item',
 			position: 'inside',
@@ -176,7 +175,7 @@ watch(
 
 onMounted(() => {
 	initChart()
-	useChartResize(pieChartDom.value, chartInstance)
+	useChartResize(pieChartDom.value, chartInstance!)
 })
 </script>
 <style scoped lang="less"></style>
