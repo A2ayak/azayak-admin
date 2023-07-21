@@ -5,5 +5,14 @@
 @layer components {
 	[data-theme='default'] {
 		--color-primary: 64, 158, 255;
+		--color-success: 24, 195, 139;
+		--color-warning: 239, 196, 21;
+		--color-danger: 254, 72, 90;
+		--color-info: 139, 144, 159;
+		--color-modular: 255, 255, 255;
+
+		--color-text-one: 48, 49, 51;
+		--color-text-two: 96, 98, 102;
+		--color-text-three: 144, 147, 153;
 	}
 }

@@ -8,6 +8,13 @@ module.exports = {
 			spacing: generateSpacing(),
 			colors: {
 				primary: 'rgba(var(--color-primary), <alpha-value>)',
+				success: 'rgba(var(--color-success), <alpha-value>)',
+				warning: 'rgba(var(--color-warning), <alpha-value>)',
+				danger: 'rgba(var(--color-danger), <alpha-value>)',
+				info: 'rgba(var(--color-info), <alpha-value>)',
+				'text-one': 'rgba(var(--color-text-one), <alpha-value>)',
+				'text-two': 'rgba(var(--color-text-two), <alpha-value>)',
+				'text-three': 'rgba(var(--color-text-three), <alpha-value>)',
 			},
 		},
 	},

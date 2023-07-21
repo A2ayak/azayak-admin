@@ -26,3 +26,134 @@ body {
 :-webkit-any(article, aside, nav, section) h1 {
 	font-size: 2em;
 }
+
+// 整体外框
+.az-base {
+	@padding-base: 4px;
+	@row-h: 32px;
+
+	width: 100%;
+	height: 100%;
+	border-radius: 4px;
+	// 表格
+	.table-layout {
+		width: 100%;
+		height: 100%;
+		border-radius: 4px;
+		overflow: hidden;
+		background-color: var(--color-modular);
+
+		.table-layout__header {
+			margin: @padding-base * 6;
+			width: calc(100% - @padding-base * 12);
+			height: @row-h;
+			display: flex;
+			justify-content: space-between;
+			overflow: hidden;
+			transition: height ease-in-out 0.5s;
+
+			.header-default {
+				display: flex;
+				justify-content: space-between;
+			}
+
+			.header-more {
+				width: 100%;
+				height: @row-h;
+				margin-top: @padding-base * 2;
+			}
+
+			.left-condition {
+				display: flex;
+				align-items: center;
+			}
+
+			.right-button {
+				display: flex;
+				align-items: center;
+				margin-left: @padding-base * 6;
+			}
+
+			.item {
+				height: 100%;
+				display: flex;
+				align-items: center;
+				margin-left: @padding-base * 4;
+
+				&:first-child {
+					margin-left: 0;
+				}
+
+				.item-label {
+					height: 100%;
+					color: var(--color-text-two);
+					display: flex;
+					align-items: center;
+					white-space: nowrap;
+				}
+
+				.item-value {
+					display: flex;
+					align-items: center;
+				}
+			}
+
+			&.table-layout__header--more {
+				height: calc(@row-h * 2 + @padding-base * 2);
+				& + .table-layout__body {
+					height: calc(100% - @padding-base * 12 * 2 - @row-h * 2 - @row-h - @padding-base * 2);
+				}
+			}
+		}
+
+		.table-layout__body {
+			width: calc(100% - @padding-base * 6 * 2);
+			height: calc(100% - @padding-base * 12 * 2 - @row-h * 2);
+			margin: 0 @padding-base * 6;
+			overflow: hidden;
+
+			.table {
+				width: 100%;
+				height: 100%;
+				transition: margin-top ease-in-out 0.5s;
+			}
+
+			.batch {
+				width: 100%;
+				height: 48px;
+				display: flex;
+				align-items: center;
+				margin-bottom: -@padding-base * 12;
+				overflow: hidden;
+				border: 1px solid var(--border-third);
+				border-bottom: none;
+			}
+
+			&.show-batch {
+				.batch {
+					margin-top: 0;
+					display: flex;
+				}
+
+				.table {
+					height: calc(100% - @padding-base * 12);
+					width: 100;
+					margin-top: @padding-base * 12;
+				}
+			}
+		}
+
+		.table-layout__footer {
+			width: calc(100% - @padding-base * 6 * 2);
+			height: @row-h;
+			margin: @padding-base * 6;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+		}
+
+		.table-layout__without-footer {
+			height: calc(100% - @row-h - @padding-base * 12);
+		}
+	}
+}
