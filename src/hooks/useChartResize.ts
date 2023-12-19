@@ -3,8 +3,6 @@ import elementResizeDetectorMaker from 'element-resize-detector'
 import { EChartsType } from 'echarts'
 
 export function useChartResize(chartDom: HTMLElement, chartInstance: EChartsType) {
-	console.log(chartInstance, 'zxc')
-
 	const resizeChart = debounce(
 		() =>
 			chartInstance.resize({
