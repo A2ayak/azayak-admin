@@ -24,7 +24,8 @@
 		"three": "0.127.0",
 		"troisjs": "0.3.0-beta.4",
 		"vue": "^3.2.37",
-		"vue-router": "^4.0.13"
+		"vue-router": "^4.0.13",
+		"vue-web-terminal": "3.2.2"
 	},
 	"devDependencies": {
 		"@types/echarts": "^4.9.18",

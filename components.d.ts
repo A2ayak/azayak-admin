@@ -18,8 +18,10 @@ declare module '@vue/runtime-core' {
     AMenu: typeof import('ant-design-vue/es')['Menu']
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
     ASubMenu: typeof import('ant-design-vue/es')['SubMenu']
+    IconButton: typeof import('./src/components/globalComp/IconButton.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./src/components/globalComp/SvgIcon.vue')['default']
+    TableLayout: typeof import('./src/components/globalComp/TableLayout.vue')['default']
   }
 }

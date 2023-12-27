@@ -21,6 +21,16 @@ const uiCompRoute: RouteRecordRaw = {
 				icon: 'vue',
 			},
 		},
+		{
+			path: '/uiComp/terminal',
+			name: 'terminal',
+			component: () => import('@/views/uiComp/TerminalDemo.vue'),
+			meta: {
+				hidden: false,
+				title: 'web终端',
+				icon: 'vue',
+			},
+		},
 	],
 }
 
