@@ -41,6 +41,16 @@ const chartsRoute: RouteRecordRaw = {
 				icon: 'vue',
 			},
 		},
+		{
+			path: '/charts/linkageDemo',
+			name: 'linkageDemo',
+			component: () => import('@/views/charts/ZLinkageDemo.vue'),
+			meta: {
+				hidden: false,
+				title: 'ECharts联动实例',
+				icon: 'vue',
+			},
+		},
 	],
 }
 

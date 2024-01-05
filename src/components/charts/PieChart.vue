@@ -115,7 +115,7 @@ function initChart() {
 		} as PieSeriesOption,
 		tooltip: {
 			trigger: 'item',
-			position: 'inside',
+			// position: 'inside',
 			padding: 16,
 			backgroundColor: tooltipBGColor,
 			formatter: tooltipFormatterFn,
@@ -159,10 +159,18 @@ function initChart() {
 	chartInstance.on('click', (params: any) => {
 		emits('click', params)
 	})
+	chartInstance.on('mouseover', (params: any) => {
+		emits('mouseover', params)
+	})
+	chartInstance.on('mouseout', (params: any) => {
+		emits('mouseout', params)
+	})
 }
 
 const emits = defineEmits<{
 	(e: 'click', params: any): void
+	(e: 'mouseover', params: any): void
+	(e: 'mouseout', params: any): void
 }>()
 
 watch(

@@ -9,6 +9,7 @@ import 'virtual:svg-icons-register' // svg
 import permissionGuards from '@/router/permission'
 
 import { setAntdvCompConfig } from './plugins/antdvCompConfig'
+import { setVxeTableConfig } from './plugins/vxeTableConfig'
 import { setTheme } from './utils/env'
 
 setTheme()
@@ -22,6 +23,8 @@ permissionGuards(router)
 
 // antdv全局配置
 setAntdvCompConfig(app)
+// vxe-table配置
+setVxeTableConfig(app)
 document.title = import.meta.env.VITE_APP_NAME
 
 app.mount('#app')

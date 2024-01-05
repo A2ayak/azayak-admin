@@ -11,8 +11,9 @@ import { ref } from 'vue'
 import PieChart from '@/components/charts/PieChart.vue'
 
 const seriesData = ref([
-	{ name: '123', value: '435' },
-	{ name: '234', value: '123' },
+	{ name: '饼1', value: '400' },
+	{ name: '饼2', value: '200' },
+	{ name: '饼3', value: '100' },
 ])
 </script>
 <style scoped lang="less"></style>

@@ -23,7 +23,7 @@ export default function permissionGuards(router: Router) {
 					permissionRoutes.forEach((route) => {
 						router.addRoute(route)
 					})
-					next({ name: 'barChart', replace: true })
+					next({ name: 'pieChart', replace: true })
 				} catch (error) {
 					console.warn(error)
 					next('/login')
