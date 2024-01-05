@@ -9,6 +9,8 @@ import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import { generateThemeVars } from './src/style/theme'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { viteMockServe } from 'vite-plugin-mock'
+// vxe-table
+import { createStyleImportPlugin, VxeTableResolve } from 'vite-plugin-style-import'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -52,6 +54,9 @@ export default defineConfig(({ command, mode }) => {
 			viteMockServe({
 				mockPath: 'mock',
 				supportTs: true,
+			}),
+			createStyleImportPlugin({
+				resolves: [VxeTableResolve()],
 			}),
 		],
 		resolve: {
