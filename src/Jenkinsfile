@@ -1,8 +1,11 @@
 pipeline {
   agent any
-  // environment {
-  //     NAME = 'azayak-admin'
-  // }
+  environment {
+      name = 'azayak-admin'
+      branch = 'main'
+      credentialsId = 'A2ayak'
+      gitUrl = 'https://github.com/A2ayak/azayak-admin.git'
+  }
   stages {
       stage('同步代码') {
           steps {
