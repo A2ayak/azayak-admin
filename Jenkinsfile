@@ -9,7 +9,7 @@ pipeline {
   stages {
       stage('同步代码') {
           steps {
-               git branch: '$branch', credentialsId: '$credentialsId', url: '$gitUrl'
+               git branch: '$branch', url: '$gitUrl'
           }
       }
 
