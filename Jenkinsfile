@@ -16,7 +16,7 @@ pipeline {
       stage('复制依赖') {  
           steps {
                sh 'rm -rf $WORKSPACE/node_modules'
-               sh 'cp -raf /data/vue-node-modules/azayak-admin/node_modules /$WORKSPACE/'
+               sh 'cp -raf /data/vue-node-modules/azayak-admin/node_modules $WORKSPACE/'
           }
       }
 
