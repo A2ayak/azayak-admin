@@ -9,11 +9,11 @@ pipeline {
   stages {
       stage('同步代码') {
           steps {
-               git branch: '$branch', url: '$gitUrl'
+               checkout scm
           }
       }
 
-      stage('复制依赖') {  
+      stage('安装依赖') {  
           steps {
             //    sh 'rm -rf $WORKSPACE/node_modules'
             //    sh 'cp -raf /data/vue-node-modules/azayak-admin/node_modules $WORKSPACE/'
