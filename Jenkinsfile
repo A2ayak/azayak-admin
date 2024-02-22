@@ -17,13 +17,13 @@ pipeline {
           steps {
             //    sh 'rm -rf $WORKSPACE/node_modules'
             //    sh 'cp -raf /data/vue-node-modules/azayak-admin/node_modules $WORKSPACE/'
-               sh 'pnpm install'
+               sh 'npm install'
           }
       }
 
       stage('VUE编译') {
           steps {
-               sh 'pnpm run build:simple'
+               sh 'npm run build:simple'
           }
       }
 
