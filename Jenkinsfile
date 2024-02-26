@@ -14,7 +14,7 @@ pipeline {
   }
   stages {
       stage('同步代码') {
-          steps {
+          steps { 
                checkout scm
           }
       }
@@ -37,12 +37,12 @@ pipeline {
                // 2.打tar包，注意到 -C 参数后面需要指定目录路径，而且路径末尾包含一个点号.，表示压缩当前目录下的所有内容，不包含目录本身。
                sh 'cd ./dist && tar -czvf dist.tar -C ./dist .'
           }
-      }
+      }   
 
       stage('部署到开发环境') {
           steps {
-               sh "scp -P 9090 -r -p $WORKSPACE/azayak-admin/dist/dist.war root@$DEV_SERVER:/home/nginx/html"
-               sh "ssh -p 9090 root@$DEV_SERVER 'tar -zxvf /home/nginx/html/dist.tar'"
+               sh "scp -r -p $WORKSPACE/azayak-admin/dist/dist.war root@$DEV_SERVER:/home/nginx/html"
+               sh "ssh root@$DEV_SERVER 'tar -zxvf /home/nginx/html/dist.tar'"
           }
       }
   }
