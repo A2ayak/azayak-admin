@@ -7,7 +7,7 @@
 <script setup lang="ts" name="SvgIcon">
 import { computed, CSSProperties } from 'vue'
 interface SvgProps {
-	name: string
+	icon: string
 	type?: string
 	prefix?: string
 	size?: number | string
@@ -29,7 +29,7 @@ const iconStyle = computed((): CSSProperties => {
 	}
 })
 
-const symbolId = computed(() => `#${props.prefix}-${props.name}`)
+const symbolId = computed(() => `#${props.prefix}-${props.icon}`)
 </script>
 <style lang="less" scope>
 .svg-icon {
