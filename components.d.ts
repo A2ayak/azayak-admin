@@ -22,5 +22,6 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./src/components/globalComp/SvgIcon.vue')['default']
     TableLayout: typeof import('./src/components/globalComp/TableLayout.vue')['default']
+    TableMoreBtn: typeof import('./src/components/globalComp/TableMoreBtn.vue')['default']
   }
 }
