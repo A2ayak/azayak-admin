@@ -8,6 +8,7 @@ declare module '*.vue' {
 
 declare type Nullable<T> = T | null
 declare type Recordable<T = any> = Record<string, T>
+declare type PartialRecord<K extends keyof any, T> = Partial<Record<K, T>>
 
 declare interface response {
 	code: number
