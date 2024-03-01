@@ -21,6 +21,16 @@ const animationRoute: RouteRecordRaw = {
 				icon: 'vue',
 			},
 		},
+		{
+			path: '/animation/svgPath',
+			name: 'svgPath',
+			component: () => import('@/views/animation/SvgPath.vue'),
+			meta: {
+				hidden: false,
+				title: '路径动画',
+				icon: 'vue',
+			},
+		},
 	],
 }
 
