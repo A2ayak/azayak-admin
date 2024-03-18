@@ -10,10 +10,15 @@ declare type Nullable<T> = T | null
 declare type Recordable<T = any> = Record<string, T>
 declare type PartialRecord<K extends keyof any, T> = Partial<Record<K, T>>
 
-declare interface response {
+declare interface Response<T = any> {
 	code: number
-	result: any
+	result: T
 	[key: string]: any
+}
+
+// 深层次可选属性
+declare type DeepPartial<T> = {
+	[P in keyof T]?: T[P] extends Record<string, unknown> ? DeepPartial<T[P]> : T[P]
 }
 
 interface ImportMetaEnv {
