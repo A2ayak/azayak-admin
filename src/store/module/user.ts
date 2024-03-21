@@ -3,7 +3,6 @@ import type { RouteRecordRaw } from 'vue-router'
 import { login, getUserInfo } from '@/api/user'
 import { localCache } from '@/utils/webStorage'
 import type { IAccount } from '@/components/login/type'
-import router from '@/router'
 
 export const useUserStore = defineStore({
 	id: 'userStore',
@@ -39,7 +38,8 @@ export const useUserStore = defineStore({
 			this.token = result.token
 			//进行本地缓存
 			localCache.setCache('token', this.token)
-			await router.push('/charts/lineChart')
+			// router.push('/charts/lineChart')
+			return true
 
 			// //2. 获取登录用户详细身份信息（角色信息）
 			// const userInfoResult = await getUserInfoById(id)
