@@ -15,7 +15,13 @@
 			<ZoomBlurPass :strength="zoomStrength" />
 		</EffectComposer>
 	</Renderer>
-	<a href="#" @click="updateColors" @mouseenter="targetTimeCoef = 100" @mouseleave="targetTimeCoef = 1">login</a>
+	<!-- <a href="#" @click="login" @mouseenter="targetTimeCoef = 100" @mouseleave="targetTimeCoef = 1">login</a> -->
+	<a href="#" @click="login">login</a>
+	<div
+		v-show="loginSuccess"
+		class="h-full w-full z-50 absolute left-0 top-0 bg-white/0 pointer-events-none"
+		:class="{ 'mask-animation': loginSuccess }"
+	/>
 </template>
 
 <script lang="ts" setup>
@@ -39,6 +45,7 @@ import {
 } from 'troisjs'
 import { Clock, Color, MathUtils, Vector3 } from 'three'
 import { niceColors } from '@/assets/niceColors'
+import router from '@/router'
 
 const { randFloat: rnd, randInt, randFloatSpread: rndFS } = MathUtils
 
@@ -98,21 +105,30 @@ const targetTimeCoef = ref(1)
 const rendererRef = ref()
 const pointsRef = ref()
 
-async function updateColors() {
-	const colorAttribute = pointsRef.value.geometry.attributes.color
-	const ip = randInt(0, 99)
-	const palette = niceColors[ip]
-	const color = new Color()
+const loginSuccess = ref(false)
+async function login() {
+	// const colorAttribute = pointsRef.value.geometry.attributes.color
+	// const ip = randInt(0, 99)
+	// const palette = niceColors[ip]
+	// const color = new Color()
 
-	for (let i = 0; i < POINTS_COUNT; i++) {
-		color.set(palette[randInt(0, palette.length)])
-		color.toArray(colorAttribute.array, i * 3)
-	}
-	colorAttribute.needsUpdate = true
+	// for (let i = 0; i < POINTS_COUNT; i++) {
+	// 	color.set(palette[randInt(0, palette.length)])
+	// 	color.toArray(colorAttribute.array, i * 3)
+	// }
+	// colorAttribute.needsUpdate = true
 
+	targetTimeCoef.value = 100
 	// 登录
 	const userStore = useUserStore()
-	await userStore.loginAction(account)
+	const res = await userStore.loginAction(account)
+	console.log(res)
+	if (res) {
+		loginSuccess.value = true
+		setTimeout(() => {
+			router.push('/charts/lineChart')
+		}, 1200)
+	}
 }
 
 onMounted(() => {
@@ -157,5 +173,17 @@ a {
 	color: #fff;
 	border: 1px solid #fff;
 	border-radius: 50px;
+}
+
+@keyframes toShow {
+	from {
+		background-color: rgba(255, 255, 255, 0);
+	}
+	to {
+		background-color: rgba(255, 255, 255, 1);
+	}
+}
+.mask-animation {
+	animation: toShow 3s forwards ease-in-out;
 }
 </style>
