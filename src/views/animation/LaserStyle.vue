@@ -115,7 +115,6 @@ onMounted(() => {
 	if (!props.h) {
 		canvas.height = wrapper.clientHeight
 	}
-	console.log(canvas, canvas.width, canvas.height)
 	setTimeout(() => {
 		laserStyle(canvas)
 	})
