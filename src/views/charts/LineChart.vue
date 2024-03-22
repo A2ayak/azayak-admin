@@ -1,8 +1,7 @@
 <template>
 	<div>
 		asdasdasd
-		<svg-icon name="vue"></svg-icon>
-		<not-found-page></not-found-page>
+		<svg-icon icon="vue"></svg-icon>
 	</div>
 </template>
 
