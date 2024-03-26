@@ -23,7 +23,7 @@ export default function permissionGuards(router: Router) {
 					permissionRoutes.forEach((route) => {
 						router.addRoute(route)
 					})
-					next({ name: 'laserStyle', replace: true })
+					next({ name: 'svgPath', replace: true })
 				} catch (error) {
 					console.warn(error)
 					next('/login')

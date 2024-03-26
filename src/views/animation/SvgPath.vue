@@ -8,6 +8,9 @@
 			<path d="M120,150 C530,670 1080,290 1060,80" stroke-width="5" stroke="#409eff" fill="none"></path>
 		</svg>
 	</div>
+	<div class="w-full h-[200px] bg-black">
+		<div class="line-animation"></div>
+	</div>
 </template>
 
 <script lang="ts" setup>
@@ -127,6 +130,28 @@ onUnmounted(() => {
 		// 		offset-distance: 10%;
 		// 	}
 		// }
+	}
+}
+
+.line-animation {
+	@keyframes centerMove {
+		0% {
+			transform: translateX(-100%);
+		}
+		100% {
+			transform: translateX(100%);
+		}
+	}
+	@apply ~"w-[378px]" h-2 overflow-hidden left-12 top-12 z-0 relative bg-transparent;
+	&:before {
+		content: '';
+		width: 375px;
+		height: 8px;
+		border-radius: 4px;
+		position: absolute;
+		background-image: linear-gradient(to left, #a7e5e6, rgba(24, 118, 132, 0.7), rgba(24, 118, 132, 0.3));
+		transform: translateX(-100%);
+		animation: centerMove 5s ease-in-out infinite 1.5s;
 	}
 }
 </style>
