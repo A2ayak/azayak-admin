@@ -2,7 +2,6 @@ import type { Router, RouteRecordRaw } from 'vue-router'
 import { useUserStore } from '@/store/module/user'
 import { generatePermissionRoutes } from './utils/generatePermissionRoutes'
 import { localCache } from '@/utils/webStorage'
-import { replace } from 'lodash-es'
 
 const WHITE_LIST = ['/login']
 
@@ -33,8 +32,6 @@ export default function permissionGuards(router: Router) {
 					permissionRoutes.forEach((route) => {
 						router.addRoute(route)
 					})
-					console.log('123123', to)
-
 					next({ path: to.fullPath, replace: true })
 				} catch (error) {
 					console.warn(error)
