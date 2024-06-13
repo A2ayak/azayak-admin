@@ -1,6 +1,6 @@
 <template>
-	<div class="h-[200px] w-[200px]">
-		<ScrollBar height="200px">
+	<div class="h-[400px] w-[400px] ml-10">
+		<ScrollBar height="400px">
 			<p v-for="item in 20" :key="item" class="scrollbar-demo-item">{{ item }}</p>
 		</ScrollBar>
 	</div>
@@ -21,7 +21,7 @@ onMounted(() => {})
 	margin: 10px;
 	text-align: center;
 	border-radius: 4px;
-	background: var(--el-color-primary-light-9);
-	color: var(--el-color-primary);
+	background: black;
+	color: #fff;
 }
 </style>

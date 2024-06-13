@@ -1,8 +1,13 @@
 <template>
 	<a-layout class="azayak-layout-classic">
-		<a-layout-header class="header h-14 px-4 flex items-center">
-			<div class="logo w-10 h-10 bg-purple-700"></div>
-			<div class="font-bold">admin</div>
+		<a-layout-header class="header h-14 px-4 flex items-center justify-between">
+			<div class="left flex items-center">
+				<div class="logo w-10 h-10 bg-[#76b900]"></div>
+				<div class="font-bold text-lg text-[#76b900] ml-2">admin template</div>
+			</div>
+			<div class="right">
+				<Avatar />
+			</div>
 		</a-layout-header>
 		<a-layout>
 			<a-layout-sider width="200">
@@ -24,6 +29,7 @@ import { onMounted, reactive, ref, watch } from 'vue'
 import SubMenu from '../components/sider/SubMenu.vue'
 import { useUserStore } from '@/store/module/user'
 import router from '@/router'
+import Avatar from '../components/header/Avatar.vue'
 
 const userStore = useUserStore()
 

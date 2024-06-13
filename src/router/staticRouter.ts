@@ -32,7 +32,7 @@ export const staticRouter: RouteRecordRaw[] = [
 		},
 	},
 	{
-		path: '/:pathMatch(.*)',
+		path: '/:pathMatch(.*)*',
 		name: 'notFound',
 		component: () => import('@/components/NotFoundPage.vue'),
 		meta: {

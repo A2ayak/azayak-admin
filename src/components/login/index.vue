@@ -126,8 +126,8 @@ async function login() {
 	if (res) {
 		loginSuccess.value = true
 		setTimeout(() => {
-			router.push('/charts/lineChart')
-		}, 1200)
+			router.push('/animation/laserStyle')
+		}, 1400)
 	}
 }
 

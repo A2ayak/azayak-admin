@@ -22,6 +22,7 @@ export default defineConfig(({ command, mode }) => {
 		server: {
 			host: true,
 			port: 8080,
+			open: true,
 			// proxy: {
 			//   '/api': {
 			//     target: 'http://192.168.1.1',

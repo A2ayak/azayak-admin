@@ -73,5 +73,8 @@ export const useUserStore = defineStore({
 		setRoutes(routes: RouteRecordRaw[]) {
 			this.routes = routes
 		},
+		logout() {
+			this.user = null
+		},
 	},
 })

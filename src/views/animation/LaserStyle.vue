@@ -97,11 +97,11 @@ function laserStyle(canvasDom: HTMLCanvasElement) {
 	}
 
 	// 渲染
-	// const lasers = createLasers(props.n)
-	// lasers.map((line) => {
-	// 	renderLaser(line)
-	// })
-	// updateLaser()
+	const lasers = createLasers(props.n)
+	lasers.map((line) => {
+		renderLaser(line)
+	})
+	updateLaser()
 }
 
 const wrapperRef = ref()

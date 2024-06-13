@@ -1,10 +1,10 @@
-@tailwind base;
+/* @tailwind base; */
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
 	[data-theme='default'] {
-		--color-primary: 64, 158, 255;
+		--color-primary: 118, 185, 0;
 		--color-success: 24, 195, 139;
 		--color-warning: 239, 196, 21;
 		--color-danger: 254, 72, 90;
