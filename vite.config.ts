@@ -55,6 +55,7 @@ export default defineConfig(({ command, mode }) => {
 			viteMockServe({
 				mockPath: 'mock',
 				supportTs: true,
+				prodEnabled: true,
 			}),
 			createStyleImportPlugin({
 				resolves: [VxeTableResolve()],
