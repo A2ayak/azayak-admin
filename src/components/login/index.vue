@@ -1,11 +1,11 @@
 <template>
-	<Renderer ref="rendererRef" pointer resize="window">
+	<Renderer ref="rendererRef" pointer resize="window" width="1280" height="960">
 		<Camera :position="{ z: 10 }" :fov="120" />
 		<Scene>
 			<Points ref="pointsRef" :position="{ z: -100 }">
 				<BufferGeometry :attributes="attributes" />
 				<ShaderMaterial :blending="2" :depth-test="false" :uniforms="uniforms" :vertex-shader="vertexShader" :fragment-shader="fragmentShader">
-					<Texture src="https://assets.codepen.io/33787/sprite.png" uniform="uTexture" />
+					<Texture :src="sprite" uniform="uTexture" />
 				</ShaderMaterial>
 			</Points>
 		</Scene>
@@ -15,8 +15,15 @@
 			<ZoomBlurPass :strength="zoomStrength" />
 		</EffectComposer>
 	</Renderer>
-	<!-- <a href="#" @click="login" @mouseenter="targetTimeCoef = 100" @mouseleave="targetTimeCoef = 1">login</a> -->
-	<a href="#" @click="login">login</a>
+	<a
+		href="#"
+		class="login-btn"
+		:style="{ color: niceColor, borderColor: niceColor }"
+		@click="login"
+		@mouseenter="mouseEnterEvent"
+		@mouseleave="mouseLeaveEvent"
+		>启动！</a
+	>
 	<div
 		v-show="loginSuccess"
 		class="h-full w-full z-50 absolute left-0 top-0 bg-white/0 pointer-events-none"
@@ -46,6 +53,8 @@ import {
 import { Clock, Color, MathUtils, Vector3 } from 'three'
 import { niceColors } from '@/assets/niceColors'
 import router from '@/router'
+import sprite from '@/assets/png/sprite.png'
+import { random } from '@/utils'
 
 const { randFloat: rnd, randInt, randFloatSpread: rndFS } = MathUtils
 
@@ -106,6 +115,10 @@ const rendererRef = ref()
 const pointsRef = ref()
 
 const loginSuccess = ref(false)
+const isClickLogin = ref(false)
+const niceColor = ref('#76b900')
+const timer = ref()
+const userStore = useUserStore()
 async function login() {
 	// const colorAttribute = pointsRef.value.geometry.attributes.color
 	// const ip = randInt(0, 99)
@@ -117,23 +130,56 @@ async function login() {
 	// 	color.toArray(colorAttribute.array, i * 3)
 	// }
 	// colorAttribute.needsUpdate = true
+	timer.value = setInterval(() => {
+		const x = random(0, 15)
+		const y = random(0, 4)
+		console.log(x, y)
 
+		niceColor.value = niceColors[x][y]
+	}, 200)
+	isClickLogin.value = true
 	targetTimeCoef.value = 100
 	// 登录
-	const userStore = useUserStore()
-	const res = await userStore.loginAction(account)
-	console.log(res)
-	if (res) {
-		loginSuccess.value = true
+	try {
+		const res = await userStore.loginAction(account)
+		console.log(res)
+		if (res) {
+			loginSuccess.value = true
+			setTimeout(() => {
+				router.push('/animation/laserStyle')
+			}, 1400)
+		}
+	} catch {
+		targetTimeCoef.value = 1
+		loginSuccess.value = false
+	} finally {
+		isClickLogin.value = false
 		setTimeout(() => {
-			router.push('/animation/laserStyle')
-		}, 1400)
+			clearInterval(timer.value)
+			timer.value = null
+		}, 3000)
+	}
+}
+
+function mouseEnterEvent() {
+	if (!isClickLogin.value) {
+		targetTimeCoef.value = 30
+	}
+}
+function mouseLeaveEvent() {
+	if (!isClickLogin.value) {
+		targetTimeCoef.value = 1
 	}
 }
 
 onMounted(() => {
 	const positionN = rendererRef.value.three.pointer.positionN
 	const point = pointsRef?.value.points
+
+	// const width = window.innerWidth // 浏览器窗口宽度
+	// const height = window.innerHeight // 浏览器窗口高度
+
+	// rendererRef.value.three.setSize(width, height)
 
 	rendererRef.value.onBeforeRender(() => {
 		timeCoef.value = lerp(timeCoef.value, targetTimeCoef.value, 0.02)
@@ -154,24 +200,23 @@ const account: IAccount = {
 </script>
 
 <style scoped lang="less">
-canvas {
-	display: block;
-}
-a {
+.login-btn {
 	font-family: 'Montserrat', sans-serif;
 	font-size: 30px;
 	position: absolute;
-	top: calc(50% - 25px);
-	left: calc(50% - 150px);
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	width: 300px;
 	height: 50px;
 	line-height: 50px;
-	box-sizing: border-box;
-	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	text-decoration: none;
 	background-color: rgba(0, 0, 0, 0.5);
-	color: #fff;
-	border: 1px solid #fff;
+	border: 3px solid #fff;
+	font-weight: bold;
 	border-radius: 50px;
 }
 

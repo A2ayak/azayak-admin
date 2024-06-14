@@ -64,6 +64,7 @@ export default defineConfig(({ command, mode }) => {
 		resolve: {
 			alias: {
 				'@': resolve(__dirname, 'src'),
+				assets: resolve(__dirname, 'src/assets'),
 			},
 		},
 		css: {
