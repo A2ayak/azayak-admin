@@ -1,5 +1,5 @@
 import { MockMethod } from 'vite-plugin-mock'
-import { resultSuccess, resultError } from 'mock/utils'
+import { resultSuccess, resultError } from '../utils'
 
 const userInfo = {
 	user: 'admin',

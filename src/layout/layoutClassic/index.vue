@@ -10,8 +10,13 @@
 			</div>
 		</a-layout-header>
 		<a-layout>
-			<a-layout-sider width="200">
-				<a-menu v-model:selectedKeys="selectedKeys" v-model:openKeys="openKeys" mode="inline" :style="{ height: '100%', borderRight: 0 }">
+			<a-layout-sider width="256">
+				<a-menu
+					v-model:selectedKeys="selectedKeys"
+					v-model:openKeys="openKeys"
+					mode="inline"
+					:style="{ height: '100%', borderRight: 0, width: '256px' }"
+				>
 					<SubMenu :menu-list="userStore.getRoutes" />
 				</a-menu>
 			</a-layout-sider>

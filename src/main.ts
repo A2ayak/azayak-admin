@@ -12,6 +12,7 @@ import permissionGuards from '@/router/permission'
 import { setAntdvCompConfig } from './plugins/antdvCompConfig'
 import { setVxeTableConfig } from './plugins/vxeTableConfig'
 import { setTheme } from './utils/env'
+import { setupProdMockServer } from '../mock/mockProdServer'
 
 setTheme()
 
@@ -27,5 +28,9 @@ setAntdvCompConfig(app)
 // vxe-table配置
 setVxeTableConfig(app)
 document.title = import.meta.env.VITE_APP_NAME
+
+if (process.env.NODE_ENV === 'production') {
+	setupProdMockServer()
+}
 
 app.mount('#app')
