@@ -31,7 +31,8 @@
 		"mock/**/*.ts",
 		"tests/**/*.ts",
 		"vite.config.ts",
-		"./src/style/theme.ts"
+		"./src/style/theme.ts",
+		"./auto-imports.d.ts"
 	],
 	"exclude": ["node_modules", "dist"]
 }
