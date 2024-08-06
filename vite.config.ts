@@ -40,8 +40,8 @@ export default defineConfig(({ command, mode }) => {
 			}),
 			AutoImport({
 				// dts: 'src/auto-imports.d.ts', // 可以自定义文件生成的位置，默认是根目录下
-			// 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
-				imports: ['vue', "pinia", "vue-router",],
+				// 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
+				imports: ['vue', 'pinia', 'vue-router'],
 			}),
 			Components({
 				dirs: ['src/components/globalComp'],
