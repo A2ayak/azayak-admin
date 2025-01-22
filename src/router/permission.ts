@@ -2,10 +2,11 @@ import type { Router, RouteRecordRaw } from 'vue-router'
 import { useUserStore } from '@/store/module/user'
 import { generatePermissionRoutes } from './utils/generatePermissionRoutes'
 import { localCache } from '@/utils/webStorage'
+import { userInfo } from '../../mock/modules/user'
 
 const WHITE_LIST = ['/login']
 
-export default function permissionGuards(router: Router) {
+export default function setupPermission(router: Router) {
 	router.beforeEach(async (to, from, next) => {
 		const userStore = useUserStore()
 		const token = localCache.getCache('token')
@@ -17,6 +18,16 @@ export default function permissionGuards(router: Router) {
 			return next()
 		}
 
+		// 前端开发情况，无权限
+		if (import.meta.env.VITE_IS_FE_ROUTE) {
+			console.log('前端开发情况，无权限')
+			const permissionRoutes = generatePermissionRoutes(userInfo.permissionRoutes)
+			userStore.setRoutes(permissionRoutes)
+			userStore.setPermissionRoutes(userInfo.permissionRoutes)
+			next()
+			return
+		}
+
 		// 未登录情况
 		if (token) {
 			const user = userStore.getUser
@@ -26,7 +37,7 @@ export default function permissionGuards(router: Router) {
 			} else {
 				try {
 					await userStore.getUserInfo()
-					const permissionRoutes = generatePermissionRoutes(userStore.routeNames)
+					const permissionRoutes = generatePermissionRoutes(userStore.permissionRoutes)
 					console.log('权限路由:', permissionRoutes)
 					userStore.setRoutes(permissionRoutes)
 					permissionRoutes.forEach((route) => {

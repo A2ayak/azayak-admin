@@ -221,6 +221,6 @@ VXETable.config({
 	// }
 })
 
-export function setVxeTableConfig(app: App<Element>) {
+export function setupVxeTableConfig(app: App<Element>) {
 	app.use(Column).use(Table)
 }

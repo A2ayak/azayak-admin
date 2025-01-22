@@ -3,17 +3,18 @@ import Layout from '@/layout/index.vue'
 
 const chartsRoute: RouteRecordRaw = {
 	path: '/charts',
-	name: 'charts',
+	name: 'Charts',
 	component: Layout,
 	meta: {
 		hidden: false,
 		title: '可视化图表',
 		icon: 'vue',
+		order: 3,
 	},
 	children: [
 		{
 			path: '/charts/barChart',
-			name: 'barChart',
+			name: 'BarChart',
 			component: () => import('@/views/charts/BarChart.vue'),
 			meta: {
 				hidden: false,
@@ -23,7 +24,7 @@ const chartsRoute: RouteRecordRaw = {
 		},
 		{
 			path: '/charts/lineChart',
-			name: 'lineChart',
+			name: 'LineChart',
 			component: () => import('@/views/charts/LineChart.vue'),
 			meta: {
 				hidden: false,
@@ -33,7 +34,7 @@ const chartsRoute: RouteRecordRaw = {
 		},
 		{
 			path: '/charts/pieChart',
-			name: 'pieChart',
+			name: 'PieChart',
 			component: () => import('@/views/charts/PieChart.vue'),
 			meta: {
 				hidden: false,
@@ -43,7 +44,7 @@ const chartsRoute: RouteRecordRaw = {
 		},
 		{
 			path: '/charts/linkageDemo',
-			name: 'linkageDemo',
+			name: 'LinkageDemo',
 			component: () => import('@/views/charts/ZLinkageDemo.vue'),
 			meta: {
 				hidden: false,

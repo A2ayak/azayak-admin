@@ -8,10 +8,10 @@ export function generatePermissionRoutes(permission: string[]): RouteRecordRaw[]
 		const module = routeModules[path].default ?? {}
 		allRoutes.push(module)
 	}
+	console.log('allRoutes', allRoutes)
 	const routes = filterRoute(allRoutes, permission)
 	console.log('filterRoutes', routes)
-
-	return routes
+	return routes.sort((a, b) => (a.meta?.order as number) - (b.meta?.order as number))
 }
 
 function filterRoute(routes: RouteRecordRaw[], permission: string[]): RouteRecordRaw[] {

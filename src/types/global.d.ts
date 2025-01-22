@@ -25,6 +25,10 @@ interface ImportMetaEnv {
 	readonly VITE_APP_NAME: string
 	readonly VITE_API_PREFIX: string
 	readonly VITE_MOCK_API_PREFIX: string
+	readonly VITE_DEFAULT_REDIRECT: string
+	readonly VITE_LAYOUT_TYPE: string
+	readonly VITE_IS_MOCK: string
+	readonly VITE_IS_FE_ROUTE: string
 	// 更多环境变量...
 }
 

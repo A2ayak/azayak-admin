@@ -3,17 +3,18 @@ import Layout from '@/layout/index.vue'
 
 const animationRoute: RouteRecordRaw = {
 	path: '/animation',
-	name: 'animation',
+	name: 'Animation',
 	component: Layout,
 	meta: {
 		hidden: false,
 		title: '动画',
 		icon: 'vue',
+		order: 2,
 	},
 	children: [
 		{
 			path: '/animation/laserStyle',
-			name: 'laserStyle',
+			name: 'LaserStyle',
 			component: () => import('@/views/animation/LaserStyle.vue'),
 			meta: {
 				hidden: false,
@@ -23,7 +24,7 @@ const animationRoute: RouteRecordRaw = {
 		},
 		{
 			path: '/animation/svgPath',
-			name: 'svgPath',
+			name: 'SvgPath',
 			component: () => import('@/views/animation/SvgPath.vue'),
 			meta: {
 				hidden: false,

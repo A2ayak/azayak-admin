@@ -11,8 +11,8 @@
 		</a-sub-menu>
 		<a-menu-item v-else :key="subItem.path" @click="handleClickMenu(subItem)">
 			<div class="flex items-center">
-				<svg-icon :icon="subItem.meta!.icon" />
-				<span class="ml-2">{{ subItem.meta!.title }}</span>
+				<svg-icon :icon="subItem?.meta?.icon || 'vue'" />
+				<span class="ml-2">{{ subItem?.meta?.title || '-' }}</span>
 			</div>
 		</a-menu-item>
 	</template>

@@ -1,10 +1,23 @@
 import { MockMethod } from 'vite-plugin-mock'
 import { resultSuccess, resultError } from '../utils'
 
-const userInfo = {
+export const userInfo = {
 	user: 'admin',
 	email: 'azayakey@gmail.com',
-	routeNames: ['charts', 'barChart', 'lineChart', 'pieChart', 'linkageDemo', 'animation', 'laserStyle', 'svgPath', 'uiComp', 'scrollBar', 'terminal'],
+	permissionRoutes: [
+		'Charts',
+		'BarChart',
+		'LineChart',
+		'PieChart',
+		'LinkageDemo',
+		'Animation',
+		'LaserStyle',
+		'SvgPath',
+		'UiComp',
+		'ScrollBar',
+		'Terminal',
+		'Dashboard',
+	],
 }
 
 export default [
@@ -15,7 +28,7 @@ export default [
 		response: () => {
 			return resultSuccess({
 				token: 'testToken',
-				userId: '4090',
+				userId: 'testUserId',
 			})
 		},
 	},

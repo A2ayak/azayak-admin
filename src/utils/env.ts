@@ -2,7 +2,7 @@ export function getMode(): string {
 	return import.meta.env.MODE
 }
 
-export function setTheme() {
+export function setupTheme() {
 	const mode: string = getMode()
 	const theme: string = ['development', 'production'].includes(mode) ? 'default' : mode
 	const htmlDom: HTMLElement = document.getElementsByTagName('html')[0]

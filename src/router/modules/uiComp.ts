@@ -3,17 +3,18 @@ import Layout from '@/layout/index.vue'
 
 const uiCompRoute: RouteRecordRaw = {
 	path: '/uiComp',
-	name: 'uiComp',
+	name: 'UiComp',
 	component: Layout,
 	meta: {
 		hidden: false,
 		title: 'UI组件',
 		icon: 'vue',
+		order: 1,
 	},
 	children: [
 		{
 			path: '/uiComp/scrollBar',
-			name: 'scrollBar',
+			name: 'ScrollBar',
 			component: () => import('@/views/uiComp/ScrollBarDemo.vue'),
 			meta: {
 				hidden: false,
@@ -23,7 +24,7 @@ const uiCompRoute: RouteRecordRaw = {
 		},
 		{
 			path: '/uiComp/terminal',
-			name: 'terminal',
+			name: 'Terminal',
 			component: () => import('@/views/uiComp/TerminalDemo.vue'),
 			meta: {
 				hidden: false,

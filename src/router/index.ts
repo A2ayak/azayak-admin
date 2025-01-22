@@ -1,14 +1,14 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import { RouteRecordRaw } from 'vue-router'
 import { staticRouter } from './staticRouter'
-import { IS_FE_ROUTE } from '@/config'
+import { useUserStore } from '@/store/module/user'
 
 const routes: RouteRecordRaw[] = [...staticRouter]
-
-if (IS_FE_ROUTE) {
-	const modules: Recordable = import.meta.glob('./modules/**/*.ts', { eager: true })
-	for (const routePath in modules) {
-		const module: RouteRecordRaw = modules[routePath].default ?? {}
+let routeModules: Recordable
+if (import.meta.env.VITE_IS_FE_ROUTE) {
+	routeModules = import.meta.glob('./modules/**/*.ts', { eager: true })
+	for (const routePath in routeModules) {
+		const module: RouteRecordRaw = routeModules[routePath].default ?? {}
 		routes.push(module)
 	}
 }
@@ -29,6 +29,10 @@ const router = createRouter({
 //路由全局前置守卫
 router.beforeEach((to, from, next) => {
 	// console.log('路由全局前置守卫', to, from)
+	if (import.meta.env.VITE_IS_FE_ROUTE) {
+		const userStore = useUserStore()
+		userStore.setRoutes(routeModules)
+	}
 	next()
 })
 //路由全局后置守卫

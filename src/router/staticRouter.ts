@@ -5,7 +5,7 @@ import { DEFAULT_REDIRECT } from '@/config'
 export const staticRouter: RouteRecordRaw[] = [
 	{
 		path: '/',
-		redirect: '/login',
+		redirect: import.meta.env.VITE_DEFAULT_REDIRECT,
 	},
 	// {
 	// 	path: DEFAULT_URL,

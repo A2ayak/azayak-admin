@@ -10,7 +10,7 @@ export const useUserStore = defineStore({
 		return {
 			user: null,
 			userId: '',
-			routeNames: [],
+			permissionRoutes: [],
 			routes: [],
 			token: '',
 		}
@@ -28,7 +28,7 @@ export const useUserStore = defineStore({
 			const { result } = await getUserInfo()
 			localCache.setCache('token', result.token)
 			this.user = result.user
-			this.routeNames = result.routeNames
+			this.setPermissionRoutes(result.permissionRoutes)
 		},
 		async loginAction(account: IAccount) {
 			//1.账号登录，获取token等信息
@@ -72,6 +72,9 @@ export const useUserStore = defineStore({
 		},
 		setRoutes(routes: RouteRecordRaw[]) {
 			this.routes = routes
+		},
+		setPermissionRoutes(routesName: string[]) {
+			this.permissionRoutes = routesName
 		},
 		logout() {
 			this.user = null

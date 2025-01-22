@@ -3,7 +3,7 @@ import dayjs from 'dayjs'
 
 import { App } from 'vue'
 
-export function setAntdvCompConfig(app: App<Element>) {
+export function setupAntdvCompConfig(app: App<Element>) {
 	message.config({
 		maxCount: 3,
 		top: '110px',
